@@ -40,7 +40,7 @@ const options = {
         const response = await fetch(urlToFetch);
         if (response.ok){
             const jsonResponse = await response.json();
-            document.querySelector('.test2').innerHTML = jsonResponse;
+            console.log(jsonResponse);
             return jsonResponse;
         }
 
