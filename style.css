@@ -1,0 +1,47 @@
+
+body {
+    background-color: bisque;
+}
+
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#header {
+    color: darkcyan;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#button {
+    border: none;
+    color: white;
+    background-color: darkgray;
+    border-radius: 3px;
+    padding: 3px;
+}
+
+#button:hover{
+    border: none;
+    color: white;
+    background-color: #333;
+    border-radius: 3px;
+    padding: 3px;
+}
+
+.promptQuestion {
+    color: #333;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
