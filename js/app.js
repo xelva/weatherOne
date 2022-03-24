@@ -40,6 +40,7 @@ const options = {
         const response = await fetch(urlToFetch);
         if (response.ok){
             const jsonResponse = await response.json();
+            document.querySelector('.test2').innerHTML = jsonResponse;
             return jsonResponse;
         }
 
@@ -49,14 +50,16 @@ const options = {
     }
   };
 
-
+getForecast();
   
 
   //add event listener to call function
-  submit.addEventListener('click', () => {
-      city = input.value;
-    console.log(city);
-  });
+submit.addEventListener('click', () => {
+     document.querySelector('.test1').innerHTML = 'hey';
+ });
+
+
+
 
   
 /*   // Render functions

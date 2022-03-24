@@ -1,6 +1,6 @@
 //get elements and store in variables
 
-const input = document.getElementById('city');
+const input = document.querySelector('#city');
 const submit = document.getElementById('button');
 const destination = document.getElementById('destination');
 const container = document.querySelector('.container');
