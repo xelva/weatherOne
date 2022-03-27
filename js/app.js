@@ -17,10 +17,10 @@ const options = {
     }
   };
   
-  const city = input.value;
+
   // Add AJAX functions here:
-  const getPlaces = async () => {
-    const urlToFetch = fourUrl + 'Portland' + '&limit=10';
+  const getPlaces = async (city) => {
+    const urlToFetch = fourUrl + city + '&categories=11046' + '&limit=5';
     try {
         const response = await fetch(urlToFetch, options);
         if (response.ok){
@@ -34,8 +34,8 @@ const options = {
     }
   };
   
-  const getForecast = async () => {
-    const urlToFetch = `${weatherUrl}?q=Portland&APPID=${weatherAPI}` 
+  const getForecast = async (city) => {
+    const urlToFetch = `${weatherUrl}?q=${city}&APPID=${weatherAPI}` 
     try {
         const response = await fetch(urlToFetch);
         if (response.ok){
@@ -43,53 +43,47 @@ const options = {
             console.log(jsonResponse);
             return jsonResponse;
         }
-
     }
     catch(error){
         console.log(error);
     }
   };
 
-getForecast();
-  
-
-  //add event listener to call function
-submit.addEventListener('click', () => {
-     document.querySelector('.test1').innerHTML = 'hey';
- });
-
-
-
 
   
-/*   // Render functions
+   // Render functions
   const renderPlaces = (places) => {
-    placeDivs.forEach(($place, index) => {
+    placeDivs.forEach((placeHold, index) => {
       // Add your code here:
-  
-      const placeContent = '';
-      $place.append(placeContent);
+      const place = places[index];
+      const placeIcon = place.categories[0].icon;
+      const placeImgSrc = placeIcon.prefix + 'bg_64' + placeIcon.suffix;
+      const placeContent = createPlaceHTML(place.name, place.location, placeImgSrc);
+      placeHold.innerHTML = placeContent;
     });
-    destination.append(`<h2>${places[0].location.locality}</h2>`);
+    destination.innerHTML = `<h2>${places[0].location.locality}</h2>`;
   };
   
   const renderForecast = (forecast) => {
-    const weatherContent = '';
-    weatherDiv.append(weatherContent);
+    const weatherContent = createWeatherHTML(forecast);;
+    weatherDiv.innerHTML = weatherContent;
   };
+ 
   
   const executeSearch = () => {
-    placeDivs.forEach(place => place.empty());
-    weatherDiv.empty();
-    destination.empty();
-    container.css("visibility", "visible");
-    getPlaces();
-    getForecast();
+    placeDivs.forEach(place => place = '');
+    weatherDiv.innerHTML = '';
+    destination.innerHTML = '';
+    container.style.display = 'visible';
+    let city = input.value;
+    getPlaces(city).then(places => {renderPlaces(places)});
+    getForecast(city).then(forecast => {renderForecast(forecast)});
     return false;
   }
-  
-  submit.click(executeSearch);
 
 
-   */
   
+  submit.addEventListener('click', () => {
+      executeSearch();
+  })
+

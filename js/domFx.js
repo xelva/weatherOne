@@ -1,3 +1,5 @@
+
+import { weekDays } from "./dom.js";
 //declare functions
 
 const createPlaceHTML = (name, location, iconSource) => {
